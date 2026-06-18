@@ -1,7 +1,6 @@
 package com.costcalc.graph.controller;
 
-import com.costcalc.graph.dto.CharacterDto;
-import com.costcalc.graph.dto.PreferenceDto;
+import com.costcalc.graph.dto.CalcRequestDto;
 import com.costcalc.graph.service.CostCalcService;
 
 import java.util.Map;
@@ -22,12 +21,11 @@ public class CostCalcController {
     /**
      * グラフ計算APIエンドポイント。
      *
-     * @param charaDto オペレーター情報
-     * @param prefDto  ゲーム環境設定
+     * @param requestDto オペレーター情報とゲーム環境設定をまとめたDTO
      * @return 秒数をキー、CP値をバリューとしたMap
      */
     @PostMapping("/api/graph/calculate")
-    public Map<Integer, Integer> calculateGraph(@RequestBody CharacterDto charaDto, @RequestBody PreferenceDto prefDto) {
-        return costCalcService.costCalculation(charaDto, prefDto);
+    public Map<Integer, Integer> calculateGraph(@RequestBody CalcRequestDto requestDto) {
+        return costCalcService.costCalculation(requestDto.charaDto, requestDto.prefDto);
     }
 }
