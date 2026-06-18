@@ -1,4 +1,3 @@
-// ファイル名: CostCalcController.java
 package com.costcalc.graph.controller;
 
 import com.costcalc.graph.dto.CharacterDto;
@@ -11,14 +10,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * CP・SPグラフ計算のエントリーポイント。
+ * 画面から受け取ったDTOをサービス層へ引き渡す。
+ */
 @RestController
 public class CostCalcController {
+
     private final CostCalcService costCalcService = new CostCalcService();
 
+    /**
+     * グラフ計算APIエンドポイント。
+     *
+     * @param charaDto オペレーター情報
+     * @param prefDto  ゲーム環境設定
+     * @return 秒数をキー、CP値をバリューとしたMap
+     */
     @PostMapping("/api/graph/calculate")
-    public Map<Integer, Integer> calculateGraph(CharacterDto charaDto, PreferenceDto prefDto) {
-        
-        // DTOから受け取ったパラメータをサービス層の統括メソッドへ引き渡します。
-        return costCalcService.costCalculation(charaDto, optDto);
+    public Map<Integer, Integer> calculateGraph(@RequestBody CharacterDto charaDto, @RequestBody PreferenceDto prefDto) {
+        return costCalcService.costCalculation(charaDto, prefDto);
     }
 }
