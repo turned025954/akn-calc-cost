@@ -6,7 +6,7 @@ package com.costcalc.graph.constant;
  */
 public enum CharacterEnum {
     /** テキサス */
-    TEXAS(1, "テキサス", 1.0, 8, 40, 30, 1, 0, 12);
+    TEXAS(1, "テキサス", 1.0, 8, 40, 30, SkillTypeEnum.AUTO.getCode(), 0, 12, true);
 
     /** オペレーターID */
     private final Integer id;
@@ -20,12 +20,14 @@ public enum CharacterEnum {
     private final Integer spRequire;
     /** 初期SP */
     private final Integer spInitial;
-    /** スキル種別（1:手動、2:自動、3:パッシブ 等） */
+    /** スキル種別（SkillTypeEnum参照） */
     private final Integer skillType;
     /** スキル持続時間（秒）。0の場合は即時発動型 */
     private final Integer skillTime;
     /** スキル発動中の合計獲得CP */
     private final Integer skillCost;
+    /** 固有処理フラグ（trueの場合CharacterSpecialServiceの処理を適用する） */
+    private final boolean specialFlg;
 
     /**
      * コンストラクタ。
@@ -39,9 +41,10 @@ public enum CharacterEnum {
      * @param skillType     スキル種別
      * @param skillTime     スキル持続時間（秒）
      * @param skillCost     スキル発動中の合計獲得CP
+     * @param specialFlg    固有処理フラグ
      */
     CharacterEnum(Integer id, String characterName, Double initialCost, Integer costDeploy, Integer spRequire, Integer spInitial,
-                  Integer skillType, Integer skillTime, Integer skillCost) {
+                  Integer skillType, Integer skillTime, Integer skillCost, boolean specialFlg) {
         this.id = id;
         this.characterName = characterName;
         this.initialCost = initialCost;
@@ -51,6 +54,7 @@ public enum CharacterEnum {
         this.skillType = skillType;
         this.skillTime = skillTime;
         this.skillCost = skillCost;
+        this.specialFlg = specialFlg;
     }
 
     /**
@@ -106,4 +110,10 @@ public enum CharacterEnum {
      * @return skillCost
      */
     public Integer getSkillCost() { return skillCost; }
+
+    /**
+     * 固有処理フラグを返す。
+     * @return specialFlg
+     */
+    public boolean isSpecialFlg() { return specialFlg; }
 }
