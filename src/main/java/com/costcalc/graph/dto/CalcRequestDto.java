@@ -1,12 +1,14 @@
 package com.costcalc.graph.dto;
 
+import java.util.List;
+
 /**
- * グラフ計算APIのリクエストをまとめて受け取るDTO。
- * HTTPリクエストボディは1つしか持てないため、CharacterDtoとPreferenceDtoをこのDTOでラップする。
+ * コスト計算APIのリクエストをまとめて受け取るDTO。
+ * HTTPリクエストボディは1つしか持てないため、CharacterDtoリストとPreferenceDtoをこのDTOでラップする。
  */
 public class CalcRequestDto {
-    /** オペレーター情報 */
-    public CharacterDto charaDto;
+    /** オペレーター情報リスト */
+    public List<CharacterDto> charaDtoList;
     /** ゲーム環境設定 */
     public PreferenceDto prefDto;
 }
