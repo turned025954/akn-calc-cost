@@ -17,6 +17,8 @@ public class CharacterDto {
     public Integer spInitial;
     /** スキル持続時間（秒）。0の場合は即時発動型 */
     public Integer skillTime;
+    /** スキル発動中の合計獲得CP */
+    public Integer skillCost;
     /** CP回復タイプ */
     public String cpType;
     /** SP回復タイプ */
